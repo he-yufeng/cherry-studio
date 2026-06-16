@@ -649,7 +649,7 @@ const CodeCliPage: FC = () => {
                   </Button>
                 </DialogClose>
                 <Button
-                  variant="emphasis"
+                  variant="default"
                   onClick={handleLaunch}
                   loading={isLaunching}
                   disabled={!canLaunch || (selectedCliTool !== codeCLI.qoderCli && !isBunInstalled) || isLaunching}>
