@@ -294,12 +294,12 @@ describe('ProviderList', () => {
     const searchWrap = screen.getByPlaceholderText('搜索模型平台...').closest('div')
 
     expect(addButton.compareDocumentPosition(filterButton) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(addButton).toHaveClass('size-7', 'text-primary')
+    // The add button is now the shared outline `Button` — neutral foreground, no brand fill.
+    expect(addButton).toHaveClass('border-border', 'text-foreground')
+    expect(addButton).not.toHaveClass('text-primary')
     expect(searchWrap).toContainElement(filterButton)
     expect(searchWrap).not.toContainElement(addButton)
-    expect(filterButton).toHaveClass('size-[22px]')
     expect(filterButton).not.toHaveClass('bg-primary/10')
-    expect(filterButton.querySelector('svg')).toHaveClass('text-muted-foreground/60')
   })
 
   it('surfaces reorder persistence errors', async () => {
@@ -327,7 +327,9 @@ describe('ProviderList', () => {
     expect(screen.getByText('Anthropic')).toBeInTheDocument()
     const filterButton = screen.getByRole('button', { name: '筛选服务商' })
     expect(filterButton).not.toHaveClass('bg-primary/10')
-    expect(filterButton.querySelector('svg')).toHaveClass('text-primary!')
+    // The neutral-primary direction dropped the brand-tinted active-filter icon;
+    // the assertion only needs to confirm the underlying filter state took effect
+    // (the list filtering above) — the visual highlight is intentionally gone.
   })
 
   it('shows management actions for preset-derived and custom providers but not canonical presets', () => {

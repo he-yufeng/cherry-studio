@@ -33,7 +33,7 @@ describe('ThemeColorPicker', () => {
     expect(input).toHaveValue('#112233')
   })
 
-  it('normalizes draft colors only after blur', () => {
+  it('normalizes draft colors on change (live preview)', () => {
     const onChange = vi.fn()
 
     const ControlledThemeColorPicker = () => {
@@ -57,14 +57,18 @@ describe('ThemeColorPicker', () => {
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: 'BDE' } })
 
-    expect(input).toHaveValue('BDE')
-    expect(onChange).not.toHaveBeenCalled()
-
-    fireEvent.blur(input)
-
+    // The picker commits a valid normalized hex as soon as typing produces one,
+    // so the live preview tracks the typed shorthand without waiting for blur.
+    // The input mirrors the parent's value after the controlled re-render.
     expect(input).toHaveValue('#BBDDEE')
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith('#BBDDEE')
+
+    // Blur is a no-op when the typed value already normalized — `draftValue`
+    // is reset to the current normalized value, which is identical.
+    fireEvent.blur(input)
+    expect(input).toHaveValue('#BBDDEE')
+    expect(onChange).toHaveBeenCalledTimes(1)
   })
 
   it('does not commit when the normalized draft matches the current value', () => {

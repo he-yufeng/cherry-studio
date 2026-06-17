@@ -65,7 +65,11 @@ const ThemeColorPicker = ({ value, presets, onChange, ariaLabel, className }: Th
     setDraftValue(nextValue)
 
     const nextColor = normalizeHexColor(nextValue)
-    if (nextColor) {
+    // Skip the parent callback when the normalized form already matches the
+    // current value — typing the long-form of the active color (or the same
+    // hex with/without `#`) shouldn't re-fire `onChange` and won't be a real
+    // edit downstream.
+    if (nextColor && nextColor !== normalizedValue) {
       onChange(nextColor)
     }
   }
