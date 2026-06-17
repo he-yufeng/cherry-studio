@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { applicationMock, windowManagerMock, preferenceServiceMock } = vi.hoisted(() => {
+const { applicationMock, windowManagerMock } = vi.hoisted(() => {
   const windowManagerMock = {
     open: vi.fn<(type: string, args?: { initData?: unknown; options?: unknown }) => string>(() => 'settings-window-id'),
     getWindow: vi.fn<(id: string) => unknown>(() => undefined),
@@ -24,7 +24,7 @@ const { applicationMock, windowManagerMock, preferenceServiceMock } = vi.hoisted
       throw new Error(`unexpected service: ${name}`)
     })
   }
-  return { applicationMock, windowManagerMock, preferenceServiceMock }
+  return { applicationMock, windowManagerMock }
 })
 
 vi.mock('@application', () => ({ application: applicationMock }))
