@@ -196,7 +196,7 @@ export const drawerClasses = {
   footerTextButton:
     'h-auto min-h-0 rounded-md px-0 py-0 text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted/60 shadow-none hover:bg-transparent hover:text-foreground-muted',
   healthCostWarning:
-    'shrink-0 rounded-[length:var(--radius-lg)] border-[color:var(--color-warning-base)] bg-[color:var(--color-warning-bg)] px-3 py-2.5 text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-[color:var(--color-warning-base)] shadow-none [&_[data-slot=alert-icon]]:mt-0 [&_[data-slot=alert-icon]_svg]:size-4 [&_[data-slot=alert-message]]:font-[weight:var(--font-weight-medium)]',
+    'shrink-0 rounded-[length:var(--radius-lg)] border-[color:var(--color-warning-base)] bg-[color:var(--color-warning-bg)] px-3 py-2.5 text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-[color:var(--color-warning-base)] shadow-none [&_[data-slot=alert-icon]]:mt-0 [&_[data-slot=alert-icon]_svg]:size-4 [&_[data-slot=alert-message]]:font-medium',
   /** Model health-check drawer: determinate progress (scoped neutral track + primary fill). */
   healthProgressTrack:
     'h-1.5 w-full overflow-hidden rounded-full bg-[color:color-mix(in_srgb,var(--muted-foreground)_12%,transparent)]',
@@ -280,13 +280,13 @@ export const modelListClasses = {
   listActionMenuIcon: 'size-3.5 text-muted-foreground/70',
   subsectionTooltipTrigger: 'inline-flex size-5 min-h-0 shrink-0 items-center justify-center leading-none',
   subsectionTitleEnabled:
-    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-medium',
   subsectionCountEnabled:
-    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground-muted tabular-nums font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground-muted tabular-nums font-medium',
   subsectionTitleDisabled:
-    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-medium',
   subsectionCountDisabled:
-    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground-muted tabular-nums font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground-muted tabular-nums font-medium',
   emptyState:
     'flex min-h-40 items-center justify-center rounded-2xl border border-(--color-border) border-dashed bg-[var(--color-surface-fg-sunken)] px-4 text-center text-[length:var(--font-size-body-md)] leading-[var(--line-height-body-md)] text-foreground-muted',
   listScroller: 'min-h-0 min-w-0 w-full flex-1 overflow-x-hidden pr-1',
@@ -296,7 +296,7 @@ export const modelListClasses = {
   manageListGroupShell: 'mb-1',
   manageListGroupHeader: 'flex items-center gap-1.5 px-1 py-[3px]',
   manageListGroupTitle:
-    'font-[weight:var(--font-weight-medium)] text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted',
+    'font-medium text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted',
   manageListGroupRule: 'h-px min-w-0 flex-1 bg-muted/50',
   manageListRow: 'group flex items-center gap-2 rounded-lg px-1.5 py-[5px] transition-colors hover:bg-accent/50',
   manageListRowLast: 'mb-0.5',
@@ -328,7 +328,7 @@ export const modelListClasses = {
   groupHeaderActions: 'flex h-6 shrink-0 items-center gap-1',
   groupSwitchTooltipTrigger: 'inline-flex h-6 shrink-0 items-center justify-center leading-none',
   groupTitle:
-    'min-w-0 flex-1 truncate text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-[weight:var(--font-weight-medium)]',
+    'min-w-0 flex-1 truncate text-[length:var(--font-size-body-sm)] leading-[var(--line-height-body-sm)] text-foreground font-medium',
   groupChevron:
     'size-3 shrink-0 text-muted-foreground/30 transition-[transform,color] duration-150 group-hover/groupRow:text-foreground',
   groupChevronOpen: 'rotate-90',
@@ -366,7 +366,7 @@ export const modelSyncClasses = {
   summaryCard:
     'rounded-2xl border border-[color:var(--color-border-fg-muted)] bg-[var(--color-surface-fg-sunken)] px-4 py-3',
   summaryTitle:
-    'text-[length:var(--font-size-body-md)] leading-[var(--line-height-body-md)] text-foreground/85 font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-md)] leading-[var(--line-height-body-md)] text-foreground/85 font-medium',
   summaryMeta: 'text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] text-muted-foreground/75',
   summaryGrid: 'mt-3 grid gap-2 sm:grid-cols-3',
   summaryMetric:
@@ -377,7 +377,7 @@ export const modelSyncClasses = {
   sectionHeader: 'flex flex-wrap items-center justify-between gap-3',
   sectionTitleWrap: 'min-w-0',
   sectionTitle:
-    'text-[length:var(--font-size-body-md)] leading-[var(--line-height-body-md)] text-foreground/85 font-[weight:var(--font-weight-medium)]',
+    'text-[length:var(--font-size-body-md)] leading-[var(--line-height-body-md)] text-foreground/85 font-medium',
   sectionMeta: 'text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] text-muted-foreground/75',
   sectionActions: 'flex flex-wrap items-center gap-2',
   toggleButton: cn(
@@ -408,7 +408,7 @@ export const modelSyncClasses = {
   fetchEmptyIconWrap: 'mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-muted',
   fetchEmptyIcon: 'size-4 text-foreground-muted',
   fetchEmptyTitle:
-    'font-[weight:var(--font-weight-medium)] text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground',
+    'font-medium text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground',
   fetchEmptyDescription:
     'mt-1 text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted',
   fetchSection: 'min-w-0',
@@ -417,7 +417,7 @@ export const modelSyncClasses = {
   fetchDotNew: 'h-[6px] w-[6px] shrink-0 rounded-full bg-primary',
   fetchDotRemoved: 'h-[6px] w-[6px] shrink-0 rounded-full bg-destructive',
   fetchSectionTitle:
-    'text-[length:var(--font-size-body-sm)] font-[weight:var(--font-weight-medium)] text-foreground leading-[var(--line-height-body-sm)]',
+    'text-[length:var(--font-size-body-sm)] font-medium text-foreground leading-[var(--line-height-body-sm)]',
   fetchSectionCount:
     'text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted tabular-nums',
   fetchGhostAll:
@@ -434,9 +434,9 @@ export const modelSyncClasses = {
   fetchAvatar:
     'flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-muted font-medium text-[length:var(--font-size-body-xs)] leading-none text-foreground-muted',
   fetchRowTitle:
-    'truncate text-[length:var(--font-size-body-sm)] font-[weight:var(--font-weight-medium)] leading-[var(--line-height-body-xs)] text-foreground',
+    'truncate text-[length:var(--font-size-body-sm)] font-medium leading-[var(--line-height-body-xs)] text-foreground',
   fetchRowTitleStrike:
-    'truncate text-[length:var(--font-size-body-sm)] font-[weight:var(--font-weight-medium)] leading-[var(--line-height-body-xs)] text-foreground-muted line-through decoration-foreground-muted',
+    'truncate text-[length:var(--font-size-body-sm)] font-medium leading-[var(--line-height-body-xs)] text-foreground-muted line-through decoration-foreground-muted',
   fetchRowId:
     'mt-0.5 truncate font-mono text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted',
   fetchRowIdStrike:
@@ -456,7 +456,7 @@ export const apiKeyListClasses = {
   keyTextBlock: 'min-w-0 flex-1',
   keyRowActions: 'flex shrink-0 items-center gap-1.5',
   keyLabel:
-    'min-w-0 truncate text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] text-foreground font-[weight:var(--font-weight-medium)]',
+    'min-w-0 truncate text-[length:var(--font-size-caption)] leading-[var(--line-height-caption)] text-foreground font-medium',
   keyValue:
     'min-w-0 flex-1 truncate font-mono text-[length:var(--font-size-body-xs)] leading-[var(--line-height-body-xs)] text-foreground-muted',
   keyDraftRow: 'flex min-w-0 items-center gap-2',
@@ -493,16 +493,15 @@ export const oauthCardClasses = {
   profileMeta: 'flex min-w-0 flex-1 items-center gap-3',
   /** Avatar: 32px round avatar, primary fill, initials (/ CherryIN row). */
   avatarSm:
-    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-[weight:var(--font-weight-semibold)] text-white',
+    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white',
   nameBlock: 'min-w-0',
   nameRow: 'flex flex-wrap items-center gap-1.5',
   name: 'truncate text-(length:--font-size-body-md) leading-[1.2] font-semibold tracking-tight text-foreground',
   /** Logged-in title line — `text-xs` in structured. */
-  loggedInName:
-    'truncate text-[length:var(--font-size-body-xs)] font-[weight:var(--font-weight-medium)] leading-tight text-foreground',
+  loggedInName: 'truncate text-[length:var(--font-size-body-xs)] font-medium leading-tight text-foreground',
   loggedInEmail: 'mt-0.5 truncate text-[length:var(--font-size-body-xs)] leading-[1.35] text-muted-foreground/40',
   badge:
-    'inline-flex items-center rounded bg-[color:color-mix(in_srgb,var(--warning)_10%,transparent)] px-1 py-[0.5px] text-(length:--font-size-body-2xs) font-[weight:var(--font-weight-medium)] leading-tight text-[color:var(--warning)]',
+    'inline-flex items-center rounded bg-[color:color-mix(in_srgb,var(--warning)_10%,transparent)] px-1 py-[0.5px] text-(length:--font-size-body-2xs) font-medium leading-tight text-[color:var(--warning)]',
   loggedInActions: 'flex shrink-0 flex-wrap items-center justify-end gap-2',
   inlineBalanceBlock: 'text-right',
   inlineBalanceLabel: 'text-[length:var(--font-size-body-xs)] text-muted-foreground/40',

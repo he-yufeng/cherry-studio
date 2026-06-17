@@ -1,5 +1,5 @@
 import { Badge, Combobox, type ComboboxOption } from '@cherrystudio/ui'
-import { Check, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import type { FC } from 'react'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -127,7 +127,6 @@ export const TagSelector: FC<Props> = ({ value, onChange, tagColorByName, allTag
                 }`}>
                 {option.label}
               </span>
-              {checked && <Check size={12} className="shrink-0 text-foreground" />}
             </>
           )
         }}

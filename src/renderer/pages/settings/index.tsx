@@ -80,7 +80,7 @@ export const SettingsPageHeader = ({
     <div className="min-w-0">
       <div className="flex items-center gap-2 text-foreground">
         {icon ? <span className="inline-flex shrink-0 [&_svg]:size-5 [&_svg]:text-foreground">{icon}</span> : null}
-        <h1 className="m-0 select-none font-[weight:550] text-lg leading-6">{title}</h1>
+        <h1 className="m-0 select-none font-[550] text-lg leading-6">{title}</h1>
       </div>
       {description ? <p className="m-0 mt-1.5 text-foreground-muted text-xs">{description}</p> : null}
     </div>
@@ -209,7 +209,7 @@ export const settingsContentBodyClassName = 'flex min-h-full w-full flex-col px-
 export const settingsContentHeaderClassName = 'mb-5'
 
 // 3-column page content-header title (15px, weight 550).
-export const settingsContentHeaderTitleClassName = 'font-[weight:550] text-foreground text-(length:--font-size-body-md)'
+export const settingsContentHeaderTitleClassName = 'font-[550] text-foreground text-(length:--font-size-body-md)'
 
 // 3-column page content-header description (muted, 14px).
 export const settingsContentHeaderDescriptionClassName = 'mt-1 text-foreground-muted text-sm'
