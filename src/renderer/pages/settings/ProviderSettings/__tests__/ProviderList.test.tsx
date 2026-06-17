@@ -326,10 +326,10 @@ describe('ProviderList', () => {
     expect(screen.queryByText('OpenAI')).not.toBeInTheDocument()
     expect(screen.getByText('Anthropic')).toBeInTheDocument()
     const filterButton = screen.getByRole('button', { name: '筛选服务商' })
+    // Neutral active-state indicator — `bg-accent` instead of the dropped brand-tinted icon,
+    // so users can still see at a glance that a filter is applied.
+    expect(filterButton).toHaveClass('bg-accent')
     expect(filterButton).not.toHaveClass('bg-primary/10')
-    // The neutral-primary direction dropped the brand-tinted active-filter icon;
-    // the assertion only needs to confirm the underlying filter state took effect
-    // (the list filtering above) — the visual highlight is intentionally gone.
   })
 
   it('shows management actions for preset-derived and custom providers but not canonical presets', () => {

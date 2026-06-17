@@ -29,6 +29,7 @@ export default function ProviderListHeaderFilterMenu({
 }: ProviderListHeaderFilterMenuProps) {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
+  const hasActiveFilter = filterMode !== 'all'
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -37,7 +38,7 @@ export default function ProviderListHeaderFilterMenu({
           type="button"
           aria-label={t('settings.provider.filter.label')}
           disabled={disabled}
-          className={className ?? providerListClasses.headerIconButton}>
+          className={cn(className ?? providerListClasses.headerIconButton, hasActiveFilter && 'bg-accent')}>
           <Filter size={14} />
         </button>
       </PopoverTrigger>
