@@ -27,18 +27,21 @@ export default function ProviderField({
 }: ProviderFieldProps) {
   if (horizontal) {
     return (
-      <div className={cn('flex min-h-8 items-center justify-between gap-3', className)}>
-        <div
-          className={cn(
-            'shrink-0 text-(length:--font-size-body-xs) font-medium text-foreground-secondary leading-(--line-height-body-xs)',
-            titleClassName
-          )}>
-          {title}
+      <div className="flex flex-col gap-1">
+        <div className={cn('flex min-h-8 items-center justify-between gap-3', className)}>
+          <div
+            className={cn(
+              'shrink-0 text-(length:--font-size-body-xs) font-medium text-foreground-secondary leading-(--line-height-body-xs)',
+              titleClassName
+            )}>
+            {title}
+          </div>
+          <div className={cn('flex w-44 shrink-0 items-center justify-end gap-2', controlClassName)}>
+            {children}
+            {action}
+          </div>
         </div>
-        <div className={cn('flex w-44 shrink-0 items-center justify-end gap-2', controlClassName)}>
-          {children}
-          {action}
-        </div>
+        {help}
       </div>
     )
   }

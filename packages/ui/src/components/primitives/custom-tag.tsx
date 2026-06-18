@@ -47,7 +47,7 @@ const CustomTag: FC<CustomTagProps> = ({
         style={{
           padding: `${size / 3}px ${closable ? size * 1.8 : size * 0.8}px ${size / 3}px ${size * 0.8}px`,
           color: actualColor,
-          backgroundColor: actualColor + '20',
+          backgroundColor: `color-mix(in srgb, ${actualColor} 12%, transparent)`,
           fontSize: `${size}px`,
           lineHeight: 1,
           ...style

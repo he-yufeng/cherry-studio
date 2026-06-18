@@ -10,7 +10,7 @@ import {
   RowFlex
 } from '@cherrystudio/ui'
 import { cn } from '@renderer/utils/style'
-import { type CSSProperties, useEffect, useRef, useState } from 'react'
+import { type CSSProperties, useEffect, useState } from 'react'
 
 const HEX_COLOR_PATTERN = /^#[0-9a-fA-F]{6}$/
 const SHORT_HEX_COLOR_PATTERN = /^#[0-9a-fA-F]{3}$/
@@ -53,9 +53,6 @@ const ThemeColorPicker = ({ value, presets, onChange, ariaLabel, className }: Th
   const normalizedValue = normalizeHexColor(value) ?? '#000000'
   const [draftValue, setDraftValue] = useState(normalizedValue)
   const isCustomValue = !presets.some((color) => (normalizeHexColor(color) ?? color) === normalizedValue)
-  // ColorPicker fires onChange once on mount with its seeded value; skip that one so
-  // merely opening the popover doesn't commit a round-tripped (possibly drifted) color.
-  const skipInitialPick = useRef(true)
 
   useEffect(() => {
     setDraftValue(normalizedValue)
@@ -75,11 +72,6 @@ const ThemeColorPicker = ({ value, presets, onChange, ariaLabel, className }: Th
   }
 
   const handlePickerChange = ([r, g, b]: [number, number, number, number]) => {
-    if (skipInitialPick.current) {
-      skipInitialPick.current = false
-      return
-    }
-
     const hex = `#${[r, g, b]
       .map((channel) =>
         Math.max(0, Math.min(255, Math.round(channel)))
@@ -112,12 +104,7 @@ const ThemeColorPicker = ({ value, presets, onChange, ariaLabel, className }: Th
             />
           )
         })}
-        <Popover
-          onOpenChange={(open) => {
-            if (open) {
-              skipInitialPick.current = true
-            }
-          }}>
+        <Popover>
           <PopoverTrigger asChild>
             <button
               type="button"
