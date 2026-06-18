@@ -227,19 +227,17 @@ const McpServerCard: FC<McpServerCardProps> = ({ server, isEditing = false, onEd
           </ServerNameText>
         </ServerNameCell>
 
-        <MutedCell>{version || '—'}</MutedCell>
+        <MutedCell>{version}</MutedCell>
 
         <div className="min-w-0 shrink-0">
           <MetaBadge className={getTypeBadgeClass()}>{typeLabel}</MetaBadge>
         </div>
 
         <SourceCell>
-          {sourceLabel ? (
+          {sourceLabel && (
             <MetaBadge className={server.provider ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'}>
               {sourceLabel}
             </MetaBadge>
-          ) : (
-            <span className="text-muted-foreground/70">—</span>
           )}
           {server.providerUrl && (
             <Button
@@ -267,8 +265,7 @@ const McpServerCard: FC<McpServerCardProps> = ({ server, isEditing = false, onEd
             checked={server.isActive}
             key={server.id}
             disabled={isLoading}
-            size="xs"
-            className="shadow-none"
+            size="sm"
             onCheckedChange={handleToggleActive}
             data-no-dnd
           />

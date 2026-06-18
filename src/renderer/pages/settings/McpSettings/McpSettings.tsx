@@ -1113,6 +1113,7 @@ const McpSettings: React.FC = () => {
                     checked={server.isActive}
                     key={server.id}
                     loading={loadingServer === server.id}
+                    size="sm"
                     onCheckedChange={onToggleActive}
                   />
                   <Button
