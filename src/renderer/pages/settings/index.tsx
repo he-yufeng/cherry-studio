@@ -187,7 +187,7 @@ export const settingsSubmenuListClassName = 'flex flex-col gap-0.5 px-2.5 pb-2.5
 
 // Submenu MenuItem — idle/hover/active states for a settings nav entry (selected surface + medium weight when active).
 export const settingsSubmenuItemClassName =
-  'h-7.5 gap-2.5 rounded-lg border-transparent px-2.5 font-normal text-foreground/80 text-sm hover:!bg-muted hover:text-foreground data-[active=true]:!border-transparent data-[active=true]:!bg-selected data-[active=true]:!shadow-[inset_0_0_0_0.5px_var(--color-selected-border)] data-[active=true]:!font-medium data-[active=true]:!text-foreground [&_svg]:size-4 [&_svg]:text-current [&_svg]:[stroke-width:1.6]'
+  'h-7.5 gap-2.5 rounded-lg border-transparent px-2.5 font-normal text-foreground/80 text-sm hover:!bg-muted hover:text-foreground data-[active=true]:!border-transparent data-[active=true]:!bg-selected data-[active=true]:!shadow-(--shadow-selected-outline) data-[active=true]:!font-medium data-[active=true]:!text-foreground [&_svg]:size-4 [&_svg]:text-current [&_svg]:[stroke-width:1.6]'
 
 // Submenu MenuItem label — bumps to medium weight when the item is active.
 export const settingsSubmenuItemLabelClassName = 'group-data-[active=true]:font-medium'

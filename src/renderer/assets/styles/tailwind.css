@@ -13,6 +13,10 @@
 /* citation.ts builds the same "[cite:N]" markers in template literals; same
  * scanning trap as the test fixtures above. */
 @source not '../../utils/citation.ts';
+/* Mirror the test-fixture exclusion for the explicitly-sourced packages/ui tree
+ * (line 6) so a future bracketed fixture there can't resurface the scanning trap. */
+@source not '../../../../packages/ui/src/**/*.test.{ts,tsx}';
+@source not '../../../../packages/ui/src/**/__tests__/**';
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -117,6 +121,12 @@
   --color-sidebar-glow-bg: var(--app-sidebar-glow-bg);
   --color-sidebar-glow-line: var(--app-sidebar-glow-line);
 
+}
+
+:root {
+  /* Selected-state inset outline (sidebar / tab-bar / settings active pill) —
+   * geometry centralized here; the color stays in --color-selected-border. */
+  --shadow-selected-outline: inset 0 0 0 0.5px var(--color-selected-border);
 }
 
 @layer base {

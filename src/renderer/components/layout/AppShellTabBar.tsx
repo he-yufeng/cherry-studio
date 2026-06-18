@@ -341,7 +341,7 @@ export const AppShellTabBar = ({
           }
         : {
             activeClass:
-              'bg-selected text-sidebar-foreground shadow-[inset_0_0_0_0.5px_var(--color-selected-border)] dark:text-sidebar-foreground',
+              'bg-selected text-sidebar-foreground shadow-(--shadow-selected-outline) dark:text-sidebar-foreground',
             hoverClass:
               'text-muted-foreground hover:bg-accent hover:text-sidebar-foreground dark:hover:text-sidebar-foreground'
           },

@@ -145,20 +145,28 @@ export const ColorPicker = ({ value, defaultValue = '#000000', onChange, classNa
     setAlpha(a)
   }, [])
 
+  // Memoize the context value: the notify* setters are useCallback-stable and
+  // setMode is a stable state setter, so a fresh object literal each render is
+  // the only thing that would break identity and force the memo()'d
+  // ColorPickerSelection to re-render when no color state changed.
+  const contextValue = useMemo(
+    () => ({
+      hue,
+      saturation,
+      lightness,
+      alpha,
+      mode,
+      setHue: notifyHue,
+      setSaturation: notifySaturation,
+      setLightness: notifyLightness,
+      setAlpha: notifyAlpha,
+      setMode
+    }),
+    [hue, saturation, lightness, alpha, mode, notifyHue, notifySaturation, notifyLightness, notifyAlpha]
+  )
+
   return (
-    <ColorPickerContext
-      value={{
-        hue,
-        saturation,
-        lightness,
-        alpha,
-        mode,
-        setHue: notifyHue,
-        setSaturation: notifySaturation,
-        setLightness: notifyLightness,
-        setAlpha: notifyAlpha,
-        setMode
-      }}>
+    <ColorPickerContext value={contextValue}>
       <div className={cn('flex size-full flex-col gap-4', className)} {...props} />
     </ColorPickerContext>
   )

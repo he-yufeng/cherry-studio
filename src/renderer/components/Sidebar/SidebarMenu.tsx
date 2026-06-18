@@ -77,7 +77,7 @@ function FullMenuItems({ items, activeItem, activeTabId, onItemClick, onMiniAppT
                 label={item.label}
                 active={isActive}
                 onClick={() => void onItemClick(item.id)}
-                className="gap-2.5 py-1 text-foreground/80 hover:text-foreground data-[active=true]:bg-selected data-[active=true]:text-foreground data-[active=true]:shadow-[inset_0_0_0_0.5px_var(--color-selected-border)] [&_svg]:text-current"
+                className="gap-2.5 py-1 text-foreground/80 hover:text-foreground data-[active=true]:bg-selected data-[active=true]:text-foreground data-[active=true]:shadow-(--shadow-selected-outline) [&_svg]:text-current"
               />
             </div>
 
@@ -88,7 +88,7 @@ function FullMenuItems({ items, activeItem, activeTabId, onItemClick, onMiniAppT
                 onClick={() => onMiniAppTabClick?.(miniTab.id)}
                 className={`relative flex w-full items-center gap-2 rounded-lg py-[5px] pr-2.5 pl-7 text-(length:--font-size-body-xs) transition-all duration-150 ${
                   activeTabId === miniTab.id
-                    ? 'bg-selected text-foreground shadow-[inset_0_0_0_0.5px_var(--color-selected-border)]'
+                    ? 'bg-selected text-foreground shadow-(--shadow-selected-outline)'
                     : 'text-muted-foreground hover:bg-accent/40 hover:text-foreground'
                 }`}>
                 <MiniAppIcon tab={miniTab} />
