@@ -135,7 +135,7 @@ export const WINDOW_TYPE_REGISTRY: Partial<Record<WindowType, WindowTypeMetadata
           // sit inside the renderer's sidebar drag strip.
           titleBarStyle: 'hidden',
           trafficLightPosition: { x: 13, y: 16 },
-          // WCO height; consumed by renderer's env(titlebar-area-x)
+          // WCO height; consumed by renderer's env(titlebar-area-height)
           titleBarOverlay: { height: 42 }
         },
         win: {

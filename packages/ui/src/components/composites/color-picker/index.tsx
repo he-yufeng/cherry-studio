@@ -74,16 +74,17 @@ const safeColor = (
 }
 
 export const ColorPicker = ({ value, defaultValue = '#000000', onChange, className, ...props }: ColorPickerProps) => {
-  const defaultColor = safeColor(defaultValue, Color('#000000'))
   // Seed from the controlled value when present, otherwise the default. Read each
   // channel directly (no `||` fallback): a legitimate zero channel — a grayscale
   // saturation of 0, a black lightness of 0, a transparent alpha of 0 — must survive.
-  const seedColor = safeColor(value, defaultColor)
+  // Computed inside the lazy useState initializers so the Color() parses run once at
+  // mount rather than on every render (controlled updates go through the value effect).
+  const makeSeed = () => safeColor(value, safeColor(defaultValue, Color('#000000')))
 
-  const [hue, setHue] = useState(seedColor.hue())
-  const [saturation, setSaturation] = useState(seedColor.saturationl())
-  const [lightness, setLightness] = useState(seedColor.lightness())
-  const [alpha, setAlpha] = useState(seedColor.alpha() * 100)
+  const [hue, setHue] = useState(() => makeSeed().hue())
+  const [saturation, setSaturation] = useState(() => makeSeed().saturationl())
+  const [lightness, setLightness] = useState(() => makeSeed().lightness())
+  const [alpha, setAlpha] = useState(() => makeSeed().alpha() * 100)
   const [mode, setMode] = useState('hex')
 
   // True when the next state commit originated from a user interaction (the
@@ -121,7 +122,9 @@ export const ColorPicker = ({ value, defaultValue = '#000000', onChange, classNa
       const color = Color.hsl(hue, saturation, lightness).alpha(alpha / 100)
       const rgba = color.rgb().array()
 
-      onChange([rgba[0], rgba[1], rgba[2], alpha / 100])
+      // Round the 0–255 RGB channels here so the tuple is a clean integer-RGB +
+      // 0–1 alpha contract; consumers no longer have to clamp/round themselves.
+      onChange([Math.round(rgba[0]), Math.round(rgba[1]), Math.round(rgba[2]), alpha / 100])
     }
   }, [hue, saturation, lightness, alpha, onChange])
 

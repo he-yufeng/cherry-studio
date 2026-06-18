@@ -32,6 +32,9 @@ export const windowRequestSchemas = {
   // Queries whose result the caller reads.
   'window.is_maximized': defineRoute({ input: z.void(), output: z.boolean() }),
   'window.is_full_screen': defineRoute({ input: z.void(), output: z.boolean() }),
+  // True window key state at call time; the renderer seeds useWindowFocus with this on
+  // mount (the focus_changed event only covers transitions after subscription).
+  'window.is_focused': defineRoute({ input: z.void(), output: z.boolean() }),
   // The init data WindowManager stored for the caller window; its shape varies per
   // window type, so it is opaque (unknown) and the consumer casts (see useWindowInitData).
   'window.get_init_data': defineRoute({ input: z.void(), output: z.unknown() })

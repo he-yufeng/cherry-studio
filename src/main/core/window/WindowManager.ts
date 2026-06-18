@@ -533,6 +533,12 @@ export class WindowManager extends BaseService {
     return managed.window.isFullScreen()
   }
 
+  public isFocused(windowId: string): boolean {
+    const managed = this.windows.get(windowId)
+    if (!managed) return false
+    return managed.window.isFocused()
+  }
+
   public restore(windowId: string): boolean {
     const managed = this.windows.get(windowId)
     if (!managed) return false
