@@ -144,7 +144,7 @@ const ApiGatewaySettings: FC = () => {
                   {t('apiGateway.actions.stop')}
                 </Button>
               ) : (
-                <Button loading={apiGatewayLoading} onClick={() => handleApiGatewayToggle(true)}>
+                <Button size="sm" loading={apiGatewayLoading} onClick={() => handleApiGatewayToggle(true)}>
                   <Play size={14} />
                   {t('apiGateway.actions.start')}
                 </Button>

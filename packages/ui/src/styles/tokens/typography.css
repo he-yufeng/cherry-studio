@@ -28,6 +28,9 @@
   --cs-font-size-heading-xl: 3rem; /* 48px */
   --cs-font-size-heading-2xl: 3.75rem; /* 60px */
 
+  /* Letter Spacing — tight is the Brainwave 2.0 button/heading tracking (-2% in Figma). */
+  --cs-letter-spacing-tight: -0.02em;
+
   /* Line Heights - Body */
   --cs-line-height-body-xs: 1.25rem; /* 20px */
   --cs-line-height-body-sm: 1.5rem; /* 24px */

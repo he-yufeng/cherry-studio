@@ -369,6 +369,7 @@
   --color-button-elevated-shadow: var(--cs-button-elevated-shadow);
   --color-button-elevated-rim: var(--cs-button-elevated-rim);
   --color-button-elevated-highlight: var(--cs-button-elevated-highlight);
+  --color-button-elevated-highlight-hover: var(--cs-button-elevated-highlight-hover);
   --color-button-elevated-inner-shadow: var(--cs-button-elevated-inner-shadow);
 
   /* ==================== */
@@ -452,6 +453,7 @@
   --font-size-heading-lg: var(--cs-font-size-heading-lg);
   --font-size-heading-xl: var(--cs-font-size-heading-xl);
   --font-size-heading-2xl: var(--cs-font-size-heading-2xl);
+  --letter-spacing-tight: var(--cs-letter-spacing-tight);
   --line-height-body-xs: var(--cs-line-height-body-xs);
   --line-height-body-sm: var(--cs-line-height-body-sm);
   --line-height-body-md: var(--cs-line-height-body-md);

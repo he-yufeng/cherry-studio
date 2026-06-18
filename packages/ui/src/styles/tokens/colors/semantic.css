@@ -145,6 +145,7 @@
   --cs-button-elevated-shadow: rgba(13, 13, 13, 0.5);
   --cs-button-elevated-rim: #333333;
   --cs-button-elevated-highlight: rgba(255, 255, 255, 0.15);
+  --cs-button-elevated-highlight-hover: rgba(255, 255, 255, 0.28);
   --cs-button-elevated-inner-shadow: #121212;
 }
 
@@ -241,5 +242,6 @@
   --cs-button-elevated-shadow: rgba(0, 0, 0, 0.25);
   --cs-button-elevated-rim: #d0d0d0;
   --cs-button-elevated-highlight: rgba(255, 255, 255, 0.7);
+  --cs-button-elevated-highlight-hover: rgba(255, 255, 255, 0.95);
   --cs-button-elevated-inner-shadow: rgba(0, 0, 0, 0.08);
 }
