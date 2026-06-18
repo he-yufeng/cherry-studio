@@ -1,16 +1,19 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
+import { knowledgeSupportedFileExts } from '@shared/config/constant'
 import type { DirectoryItemData, FileItemData, KnowledgeItem } from '@shared/data/types/knowledge'
 import type { NotesTreeNode } from '@types'
 import { v4 as uuidv4 } from 'uuid'
 
 import { copyFileIntoKnowledgeBaseAt } from '../storage/pathStorage'
 
+const KNOWLEDGE_SUPPORTED_FILE_EXT_SET = new Set<string>(knowledgeSupportedFileExts)
+
 export type ExpandedDirectoryNode =
   | {
       type: 'directory'
-      data: Pick<DirectoryItemData, 'source' | 'path'>
+      data: Pick<DirectoryItemData, 'source' | 'relativePath'>
       children: ExpandedDirectoryNode[]
     }
   | {
@@ -78,6 +81,10 @@ async function expandDirectoryNode(
   signal: AbortSignal
 ): Promise<ExpandedDirectoryNode | null> {
   if (node.type === 'file') {
+    if (!KNOWLEDGE_SUPPORTED_FILE_EXT_SET.has(path.extname(node.externalPath).toLowerCase())) {
+      return null
+    }
+
     // Namespace each file under the directory owner's item id and keep its
     // subtree path (from `treePath`, already POSIX) so siblings sharing a
     // basename across subdirectories don't collide and the hierarchy survives.
@@ -116,7 +123,7 @@ async function expandDirectoryNode(
     type: 'directory',
     data: {
       source: node.externalPath,
-      path: node.externalPath
+      relativePath: node.externalPath
     },
     children
   }
@@ -131,7 +138,7 @@ export async function expandDirectoryOwnerToTree(
     throw new Error(`Knowledge item '${owner.id}' must be type 'directory', received '${owner.type}'`)
   }
 
-  const resolvedPath = path.resolve(owner.data.path)
+  const resolvedPath = path.resolve(owner.data.relativePath)
   const children = await readDirectoryTree(resolvedPath, signal)
   const expandedChildren: ExpandedDirectoryNode[] = []
 

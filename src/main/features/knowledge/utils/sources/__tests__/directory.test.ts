@@ -61,7 +61,7 @@ describe('expandDirectoryOwnerToTree', () => {
         type: 'directory',
         data: {
           source: rootDir,
-          path: rootDir
+          relativePath: rootDir
         },
         status: 'idle',
         error: null,
@@ -75,11 +75,11 @@ describe('expandDirectoryOwnerToTree', () => {
     expect(nodes).toEqual([
       {
         type: 'directory',
-        data: { source: path.join(rootDir, 'agents'), path: path.join(rootDir, 'agents') },
+        data: { source: path.join(rootDir, 'agents'), relativePath: path.join(rootDir, 'agents') },
         children: [
           {
             type: 'directory',
-            data: { source: nestedDir, path: nestedDir },
+            data: { source: nestedDir, relativePath: nestedDir },
             children: [
               {
                 type: 'file',
@@ -113,7 +113,7 @@ describe('expandDirectoryOwnerToTree', () => {
         type: 'directory',
         data: {
           source: rootDir,
-          path: rootDir
+          relativePath: rootDir
         },
         status: 'idle',
         error: null,
@@ -137,11 +137,11 @@ describe('expandDirectoryOwnerToTree', () => {
     expect(nodes).toContainEqual(
       expect.objectContaining({
         type: 'directory',
-        data: expect.objectContaining({ path: path.join(rootDir, 'guides') }),
+        data: expect.objectContaining({ relativePath: path.join(rootDir, 'guides') }),
         children: [
           expect.objectContaining({
             type: 'directory',
-            data: expect.objectContaining({ path: nestedDir }),
+            data: expect.objectContaining({ relativePath: nestedDir }),
             children: [
               expect.objectContaining({
                 type: 'file',
@@ -154,6 +154,55 @@ describe('expandDirectoryOwnerToTree', () => {
           })
         ]
       })
+    )
+  })
+
+  it('skips unsupported file extensions while expanding directory trees', async () => {
+    tempRoot = createTempRoot()
+    const rootDir = path.join(tempRoot, 'workspace')
+    realFs.mkdirSync(rootDir, { recursive: true })
+    realFs.writeFileSync(path.join(rootDir, 'readme.md'), '# readme')
+    realFs.writeFileSync(path.join(rootDir, 'app.exe'), 'binary')
+    // OpenDocument formats are app-wide "documents" but intentionally unsupported by the
+    // knowledge base, so a rebuild/restore that walks a directory must skip them too.
+    realFs.writeFileSync(path.join(rootDir, 'legacy.odt'), 'odt')
+    realFs.writeFileSync(path.join(rootDir, 'deck.odp'), 'odp')
+    realFs.writeFileSync(path.join(rootDir, 'sheet.ods'), 'ods')
+
+    copyFileIntoKnowledgeBaseAtMock.mockClear()
+    const nodes = await expandDirectoryOwnerToTree(
+      {
+        id: 'dir-owner-1',
+        baseId: 'kb-1',
+        groupId: null,
+        type: 'directory',
+        data: {
+          source: rootDir,
+          relativePath: rootDir
+        },
+        status: 'idle',
+        error: null,
+        createdAt: '2026-04-08T00:00:00.000Z',
+        updatedAt: '2026-04-08T00:00:00.000Z'
+      },
+      'kb-1',
+      createSignal()
+    )
+
+    expect(nodes).toEqual([
+      {
+        type: 'file',
+        data: {
+          source: path.join(rootDir, 'readme.md'),
+          relativePath: 'dir-owner-1/readme.md'
+        }
+      }
+    ])
+    expect(copyFileIntoKnowledgeBaseAtMock).toHaveBeenCalledTimes(1)
+    expect(copyFileIntoKnowledgeBaseAtMock).toHaveBeenCalledWith(
+      'kb-1',
+      path.join(rootDir, 'readme.md'),
+      'dir-owner-1/readme.md'
     )
   })
 
@@ -176,7 +225,7 @@ describe('expandDirectoryOwnerToTree', () => {
         type: 'directory',
         data: {
           source: rootDir,
-          path: rootDir
+          relativePath: rootDir
         },
         status: 'idle',
         error: null,
@@ -210,7 +259,7 @@ describe('expandDirectoryOwnerToTree', () => {
           type: 'directory',
           data: {
             source: tempRoot,
-            path: tempRoot
+            relativePath: tempRoot
           },
           status: 'idle',
           error: null,
